@@ -5,7 +5,7 @@
 
 [build.environment]
   # Set the Python version to match your local environment
-  PYTHON_VERSION = "3.8" # Set this to the version you use locally
+  PYTHON_VERSION = "3.13" # Set this to the version you use locally
 
 # Optionally, you can also add custom environment variables if needed:
 [env]
