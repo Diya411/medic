@@ -1,19 +1,16 @@
 [build]
   publish = "build"
   command = """
-    # Force Netlify to ignore 'mise'
     unset MISE_PYTHON_VERSION
     rm -rf ~/.cache/mise
     export PATH=$(echo $PATH | sed -E 's|:/opt/buildhome/.mise/bin||g')
 
-    # Install and configure pyenv
     export PYENV_ROOT="$HOME/.pyenv"
     curl https://pyenv.run | bash
     export PATH="$PYENV_ROOT/bin:$PATH"
     eval "$(pyenv init --path)"
     eval "$(pyenv virtualenv-init -)"
 
-    # Install latest available Python version
     latest_python=$(pyenv install --list | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' | tail -1)
     pyenv install -s $latest_python
     pyenv global $latest_python
@@ -25,5 +22,5 @@
   """
 
 [build.environment]
-  PYTHON_VERSION = "3.10"  # Set this to a stable version to avoid confusion
-  MISE_NO_INSTALL = "1"  # Stop Netlify from using `mise`
+  PYTHON_VERSION = "3.10"
+  MISE_NO_INSTALL = "1"
