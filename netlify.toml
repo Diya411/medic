@@ -6,7 +6,9 @@
     export PATH=\"$PYENV_ROOT/bin:$PATH\"
     eval \"$(pyenv init --path)\"
     eval \"$(pyenv virtualenv-init -)\"
-    
+
+    # Remove 'mise' if it's interfering
+    unset MISE_PYTHON_VERSION
     pyenv install --list | grep -E \"^[0-9]+\\.[0-9]+\\.[0-9]+$\" | tail -1 | xargs pyenv install -s
     pyenv global $(pyenv versions --bare | tail -1)
 
@@ -17,4 +19,4 @@
   """
 
 [build.environment]
-  PYTHON_VERSION = "3.9"
+  PYTHON_VERSION = "3.9"  # Adjust this version if needed
