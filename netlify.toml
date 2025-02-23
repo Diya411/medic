@@ -1,11 +1,20 @@
 [build]
   publish = "build"
   command = """
-    curl -sSL https://install.python-poetry.org | python3 -
+    export PYENV_ROOT="$HOME/.pyenv"
+    curl https://pyenv.run | bash
+    export PATH="$PYENV_ROOT/bin:$PATH"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv virtualenv-init -)"
+    
+    pyenv install --list | grep -E '^\s*[0-9]+\.[0-9]+\.[0-9]+$' | tail -1 | xargs pyenv install -s
+    pyenv global $(pyenv versions --bare | tail -1)
+
+    python --version
     pip install --upgrade pip
     pip install -r requirements.txt
     python your_app.py
   """
 
 [build.environment]
-  PYTHON_VERSION = "3.8.18"
+  PYTHON_VERSION = "3.9"
