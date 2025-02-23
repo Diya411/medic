@@ -1,0 +1,12 @@
+[build]
+  # Specify the build command, which will be run to build your app
+  command = "pip install -r requirements.txt && python your_app.py" # Update with your correct build command
+  publish = "build" # Directory where the final build is stored (if your app has a specific output folder)
+
+[build.environment]
+  # Set the Python version to match your local environment
+  PYTHON_VERSION = "3.8" # Set this to the version you use locally
+
+# Optionally, you can also add custom environment variables if needed:
+[env]
+  MY_ENV_VAR = "some_value"
